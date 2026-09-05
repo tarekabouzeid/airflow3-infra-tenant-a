@@ -41,7 +41,7 @@ with DAG(
         arguments=["echo LOCAL: $GREETING"],
         env_vars=SECRET_ENV,
         in_cluster=True,
-        is_delete_operator_pod=True,
+        on_finish_action="keep_pod",
         get_logs=True,
     )
 
@@ -54,6 +54,6 @@ with DAG(
         arguments=["echo REMOTE: $GREETING"],
         env_vars=SECRET_ENV,
         kubernetes_conn_id="k8s_remote",
-        is_delete_operator_pod=True,
+        on_finish_action="keep_pod",
         get_logs=True,
     )
